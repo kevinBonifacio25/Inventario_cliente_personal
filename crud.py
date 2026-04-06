@@ -2,7 +2,7 @@
 import json
 import os
 
-ARCHIVO_DATA = "Clientes.json"
+ARCHIVO_DATA = "producto.json"
 
 def cargar_datos():
     """aqui buscamos el archivo .json al iniciar el programa"""
@@ -37,8 +37,8 @@ def cargar_datos():
 
 
 
-def guardar_datos(lista_clientes):
+def guardar_datos(lista_producto):
     """sobreescribe el archivo json con una lista actualizada"""
 
     with open(ARCHIVO_DATA, "w", encoding="utf-8")as f:
-        json.dump(lista_clientes, f, indent=4, ensure_ascii=False)
+        json.dump(lista_producto, f, indent=4, ensure_ascii=False)
