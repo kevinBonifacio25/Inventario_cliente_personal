@@ -1,13 +1,13 @@
 import crud
 
 
-def registrar_clientes(lista_clientes):
+def registrar_producto(lista_producto):
    
     while True:
         try:
-            cant_clientes = int(input("escriba la cantidad de clientes a ingresar: "))
+            cant_producto = int(input("escriba la cantidad de producto a ingresar: "))
             
-            if cant_clientes<=0:
+            if cant_producto<=0:
                 print("ingrese un numero positivo")
                 continue
             break
@@ -16,89 +16,89 @@ def registrar_clientes(lista_clientes):
             print("solo se admiten numeros")
 
        
-    for cliente in range(cant_clientes):
-        print(f"\nRegistro del cliente {cliente+1}")
+    for producto in range(cant_producto):
+        print(f"\nRegistro del cliente {producto+1}")
           
-        clientes = {
+        productos = {
 
-                "id": int(input("Ingrese el ID del cliente: ")),
-                "nombre": input("Ingrese el nombre del cliente: "),
-                "edad": int(input("Ingrese la edad del cliente: ")),
-                "membresia": input("Ingrese el tipo de membresia del cliente: "),
-                "estado": input("Ingrese el estado del cliente: ")
+                "id": int(input("Ingrese el ID del producto: ")),
+                "nombre": input("Ingrese el nombre del producto: "),
+                "cantidad": int(input("Ingrese la cantidad del producto: ")),
+                "precio": float(input("Ingrese el precio del producto: "),
+         
                 }
         
-        lista_clientes.append(clientes)
-        crud.guardar_datos(lista_clientes)
+        lista_producto.append(productos)
+        crud.guardar_datos(lista_producto)
         
-    print(f"Esta es la informacion de los clientes, {lista_clientes}")
+    print(f"Esta es la informacion de los clientes, {lista_producto}")
 
 
-def listar_clientes(lista_clientes):
+def listar_producto(lista_producto):
 
-    for i,  cliente in enumerate(lista_clientes, start=1):
-        print(f"El cliente numero {i} es: Su nombre es {cliente["nombre"]}, el id es {cliente["id"]} ,la edad es {cliente["edad"]}, su tipo de membresia es {cliente["membresia"]}, y su estado es: {cliente["estado"]}.")
+    for i,  producto in enumerate(lista_producto, start=1):
+        print(f"El producto numero {i} es: Su nombre es {producto["nombre"]}, el id es {producto["id"]} ,la cantidad es {producto["cantidad"]}, su precio es {producto["precio"]}")
 
 
-def buscar_clientes_por_id(lista):
+def buscar_producto_por_id(lista_producto):
     """Ingresar el numero de ID del cliente que necesita buscar"""
     try:
-        id_cliente_buscar = int(input("Ingrese el ID del cliente a buscar: "))
+        id_producto_buscar = int(input("Ingrese el ID del producto a buscar: "))
     except ValueError:
         print("Por favor, ingrese un número válido.")
         return 
 
-    for cliente in lista:
-        if cliente.get("id") == id_cliente_buscar:
-            print(f"El cliente con ID {id_cliente_buscar} es: {cliente}")
-            return cliente
+    for producto in lista_producto:
+        if producto.get("id") == id_producto_buscar:
+            print(f"El cliente con ID {id_producto_buscar} es: {producto}")
+            return producto
         
-    print(f"No se encontró ningún cliente con ID {id_cliente_buscar}.")
+    print(f"No se encontró ningún cliente con ID {id_producto_buscar}.")
     return 
 
 
-def actualizar_info_clientes (lista_clientes):
+def actualizar_info_producto (lista_producto):
 
     try:
-        id_cliente_actualizar = int(input("Ingrese el ID del cliente para actualizar informacion: "))
+        id_producto_actualizar = int(input("Ingrese el ID del producto para actualizar informacion: "))
     except ValueError:
         print("Por favor, ingrese un número válido.")
         return 
     
     encontrado = False
-    for cliente in lista_clientes:
-        if cliente.get("id") == id_cliente_actualizar:          
-            cliente["membresia"] = input("Ingrese la nueva membresia del cliente: ")  # Actualiza el valor directamente
-            print(f"El cliente con ID {id_cliente_actualizar} cambio de membresia a tipo: {cliente['membresia']}")
-            crud.guardar_datos(lista_clientes)
+    for producto in lista_producto:
+        if producto.get("id") == id_producto_actualizar:          
+            producto["cantidad"] = input("Ingrese la nueva cantidad del producto: ")  # Actualiza el valor directamente
+            print(f"El producto con ID {id_producto_actualizar} cambio de cantidad: {producto['cantidad']}")
+            crud.guardar_datos(lista_producto)
             encontrado = True
             break
     if not encontrado:
-        print("Cliente no encontrado.")
+        print("producto no encontrado.")
 
         
     return
 
 
-def eliminar_cliente (lista_clientes):   
+def eliminar_producto (lista_producto):   
 
     try:
-        id_cliente_para_eliminar = int(input("Ingrese el ID del cliente para actualizar informacion: "))
+        id_producto_para_eliminar = int(input("Ingrese el ID del producto para actualizar informacion: "))
     except ValueError:
         print("Por favor, ingrese un número válido.")
         return 
     
    
-    for cliente in lista_clientes:
+    for producto in lista_producto:
         #te elimina el objeto cliente
-        if cliente.get("id") == id_cliente_para_eliminar: 
-            lista_clientes.remove(cliente) #elimino el cliente por medio del id
-            print(f"Cliente con ID {id_cliente_para_eliminar} eliminado.")
-            print(f"La lista de clientes actualizada es: {lista_clientes}")
-            crud.guardar_datos(lista_clientes)
+        if producto.get("id") == id_producto_para_eliminar: 
+            lista_producto.remove(producto) #elimino el cliente por medio del id
+            print(f"producto con ID {id_producto_para_eliminar} eliminado.")
+            print(f"La lista de producto actualizada es: {lista_producto}")
+            crud.guardar_datos(lista_producto)
             break
         else:
-            print("No se encontró ningún cliente con ese ID.")
+            print("No se encontró ningún producto con ese ID.")
 
 
     return 
